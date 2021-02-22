@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker images
+        env:
+          DOCKER_REGISTRY_USERNAME: "acidrain"
+          DOCKER_REGISTRY_TOKEN: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
+        run: |
+          make
+          docker login -u "${DOCKER_REGISTRY_USERNAME}" -p "${DOCKER_REGISTRY_TOKEN}"
+          make push
+
