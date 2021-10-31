@@ -19,7 +19,7 @@ RUN set -eu; \
     mkdir -p "${pyenv_plugin_root}"; \
     git clone https://github.com/momo-lab/xxenv-latest.git "${pyenv_plugin_root}/xxenv-latest";\
     \
-    for py_version in 3.6 3.7 3.8 3.9; do \
+    for py_version in 3.6 3.7 3.8 3.9 3.10; do \
         pyenv latest install ${py_version}; \
     done; \
     pyenv global $(pyenv versions --bare | sort --version-sort -r);
