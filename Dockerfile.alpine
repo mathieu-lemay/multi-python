@@ -9,7 +9,7 @@ ENV PYENV_SHELL=sh
 
 RUN set -eu; \
     apk add --no-cache --virtual .deps coreutils; \
-    apk add --no-cache --virtual .build curl git bash gcc make \
+    apk add --no-cache --virtual .build curl git bash gcc make patch \
         libc-dev zlib-dev readline-dev bzip2-dev openssl-dev sqlite-dev libffi-dev; \
     \
     git clone https://github.com/pyenv/pyenv.git "${PYENV_ROOT}"; \
