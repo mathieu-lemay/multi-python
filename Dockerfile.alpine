@@ -7,6 +7,8 @@ ENV POETRY_HOME=/opt/poetry
 ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${POETRY_HOME}/bin:${PATH}"
 ENV PYENV_SHELL=sh
 
+# CLFAGS in pyenv install command added to prevent segfaults.
+# See: https://github.com/pyenv/pyenv/issues/2141#issuecomment-964718034
 RUN set -eu; \
     apk add --no-cache --virtual .deps coreutils; \
     apk add --no-cache --virtual .build curl git bash gcc make patch \
@@ -25,7 +27,7 @@ RUN set -eu; \
     git clone https://github.com/momo-lab/xxenv-latest.git "${pyenv_plugin_root}/xxenv-latest"; \
     \
     for py_version in 3.6 3.7 3.8 3.9 3.10; do \
-        pyenv latest install ${py_version}; \
+        CFLAGS="-O2" pyenv latest install ${py_version}; \
     done; \
     pyenv global $(pyenv versions --bare | sort --version-sort -r); \
     \
