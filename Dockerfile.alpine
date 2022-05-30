@@ -19,7 +19,7 @@ RUN set -eu; \
     "${PYENV_ROOT}/src/configure"; \
     make -C "${PYENV_ROOT}/src"; \
     \
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -; \
+    curl -sSL https://install.python-poetry.org | python -; \
     pip install tox; \
     \
     pyenv_plugin_root="${PYENV_ROOT}/plugins"; \
@@ -32,7 +32,5 @@ RUN set -eu; \
     pyenv global $(pyenv versions --bare | sort --version-sort -r); \
     \
     apk del --no-cache .build;
-
-ENV PATH="/root/.poetry/bin:$PATH"
 
 # vim: ft=dockerfile
