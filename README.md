@@ -9,11 +9,11 @@ This idea behind this image is to provide a pre-made image to test multiple pyth
 
 ## Python Versions
 The image contains the latest of each of these minor python versions:
-* 3.6
 * 3.7
 * 3.8
 * 3.9
 * 3.10
+* 3.11
 
 ## Supported tags
 
