@@ -15,7 +15,7 @@ RUN set -eu; \
     curl -sSL https://install.python-poetry.org | python -; \
     pip install tox; \
     \
-    for py_version in 3.7 3.8 3.9 3.10 3.11; do \
+    for py_version in 3.8 3.9 3.10 3.11 3.12; do \
         pyenv install ${py_version}; \
     done; \
     pyenv global $(pyenv versions --bare | sort --version-sort -r);
